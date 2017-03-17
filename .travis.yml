@@ -1,0 +1,18 @@
+language: node_js
+node_js:
+- '7.6'
+
+before_script:
+- npm install
+
+script:
+- npm test
+
+after_success: bash ./bin/deploy.sh
+
+env:
+  global:
+  - GIT_USER: Travis CI
+  - GIT_EMAIL: miya0001@users.noreply.github.com
+  - GH_REF: github.com/wakayama-hacker/latlng.git
+  - secure: "NtVGnCkho4WxLYIVA8kOkil+Ac6AqxyRXQ4AncwfTJZbXmCTLruwTME1SB0pM1flHtGiWrzrfDi8g6WN6L5wVRbBa2/deJMauD0JVj/wyMrYbV4NcxsJ0kkT0xGXQTJlsmzEIe1uj8ChY+/IkokMi4igpDSkz8CiPEhGTRAKmjvfWZqZntxPE+n/OTNrtGdPTyEwjsNHeIYCPABY9ldxsJ/byxotpKpErpDJiuwo+SGwnMww/8Hntzmp3WrY+MB9uSybkCuXjNhwyHkIsFoQFd2pGNsocVs01mkCgd2pbORKsd+lYn8DBGyUkg263t867LMjre6m+VYGeMovnvtK1SJr+ZPRh2DAXNxfEYiYcM3mSvCYMB3e906QRn6weGTUzUehOJm0g2DQFpJ3f2est3thRMfKZovee3xz+lIjvT80d1N9XbB6+ot2aQpSFb3mWIkdxTJw5wgnITdxyALw7ZQ4Aq10lk5ngQ8PKdl5A8TzPIvVLHc33bcUSahvuB7a0qzqZuIOrr3IcFI+FkFFk3chIStl/jCJNZUihzJmaoWBWW/LGHZMsuypSixJLPfh07MukeONXSWVVNLJ9Sq6nlm1rLeE0dSs8Ut7cjkfVQ5dYCoxFd2J5XX5T1XUfMirC3rG9SsQuY6mIzLmTizgScDUQw0QUvOs3Yni74Z6eVg="
