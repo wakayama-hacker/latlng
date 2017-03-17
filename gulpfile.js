@@ -15,6 +15,13 @@ gulp.task( 'css', () => {
 		.pipe( gulp.dest( 'css' ) )
 } )
 
+gulp.task( 'css-images', () => {
+  gulp.src( [
+    'node_modules/leaflet/dist/images/*',
+  ] )
+		.pipe( gulp.dest( 'css/images/' ) )
+} )
+
 gulp.task( 'js', function ( cb ) {
   browserify( {
     entries: [ 'src/app.js' ]
@@ -37,5 +44,6 @@ gulp.task( 'sass', () => {
 gulp.task( 'default', [
   'js',
   'css',
+  'css-images',
   'sass',
 ] )
