@@ -31,16 +31,18 @@
 
       L.control.layers( basemaps, {}, { position: 'bottomleft' } ).addTo( map )
 
+      const marker = L.marker()
       map.on( 'click', function( e ) {
-          L.marker( [ e.latlng.lat, e.latlng.lng ] ).addTo( map )
-              .bindPopup( e.latlng.lat + ',' + e.latlng.lng )
+        marker.setLatLng( [ e.latlng.lat, e.latlng.lng ] ).addTo( map )
+              .bindPopup( '<span class="latlng">' + e.latlng.lat + '</span>, <span class="latlng">' + e.latlng.lng + '</span>' )
               .openPopup();
       } )
 
       map.on( 'moveend', function( e ) {
         const zoom = e.target._zoom
-        const lat = e.target._lastCenter.lat
-        const lng = e.target._lastCenter.lng
+        const center = map.getCenter()
+        const lat = center.lat
+        const lng = center.lng
         location.hash = zoom + ',' + lat + ',' + lng
       } )
     }
