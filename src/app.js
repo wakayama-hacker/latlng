@@ -11,7 +11,6 @@ var zoom = 5
 if ( location.hash ) {
   const hash = location.hash.replace( /^#/, '' )
   const pos = hash.split( ',' )
-  console.log(pos)
   if ( 3 === pos.length ) {
     zoom = pos[0]
     lat = pos[1]
