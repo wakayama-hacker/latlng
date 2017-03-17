@@ -6,17 +6,13 @@ const L = require( 'leaflet' )
 
 const map = require( '../tags/map.tag' )
 
-var lat = config.lat
-var lng = config.lng
-var zoom = config.zoom
-
 if ( location.hash ) {
   const hash = location.hash.replace( /^#/, '' )
   const pos = hash.split( ',' )
   if ( 3 === pos.length ) {
-    zoom = pos[0]
-    lat = pos[1]
-    lng = pos[2]
+    config.zoom = pos[0]
+    config.lat = pos[1]
+    config.lng = pos[2]
   }
 }
 
@@ -27,8 +23,8 @@ $( '#map' ).on( 'click', '.latlng', function( e ) {
 } )
 
 riot.mount( map, {
-  lat: lat,
-  lng: lng,
-  zoom: zoom,
+  lat: config.lat,
+  lng: config.lng,
+  zoom: config.zoom,
   "layers": config.layers
 } )
