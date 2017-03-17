@@ -18,6 +18,12 @@ if ( location.hash ) {
   }
 }
 
+$( '#map' ).on( 'click', '.latlng', function( e ) {
+  const r = document.createRange();
+  r.selectNodeContents( this );
+  window.getSelection().addRange( r );
+} )
+
 riot.mount( map, {
   lat: lat,
   lng: lng,
