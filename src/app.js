@@ -1,12 +1,14 @@
+const config = require( '../config.json' )
+
 const $ = require( 'jquery' )
 const riot = require( 'riot' )
 const L = require( 'leaflet' )
 
 const map = require( '../tags/map.tag' )
 
-var lat = 35.7090
-var lng = 139.7320
-var zoom = 5
+var lat = config.lat
+var lng = config.lng
+var zoom = config.zoom
 
 if ( location.hash ) {
   const hash = location.hash.replace( /^#/, '' )
@@ -28,12 +30,5 @@ riot.mount( map, {
   lat: lat,
   lng: lng,
   zoom: zoom,
-  "layers": [
-    {
-      "name": "Open Street Map",
-      "tile": "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-      "attribution": "OpenStreetMap Contributers",
-      "attribution_url": "http://osm.org/copyright"
-    },
-  ]
+  "layers": config.layers
 } )
