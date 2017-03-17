@@ -36,6 +36,13 @@
               .bindPopup( e.latlng.lat + ',' + e.latlng.lng )
               .openPopup();
       } )
+
+      map.on( 'moveend', function( e ) {
+        const zoom = e.target._zoom
+        const lat = e.target._lastCenter.lat
+        const lng = e.target._lastCenter.lng
+        location.hash = zoom + ',' + lat + ',' + lng
+      } )
     }
 
     window.addEventListener( 'resize', function() {
