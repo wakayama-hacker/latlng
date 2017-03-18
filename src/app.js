@@ -1,5 +1,7 @@
 const config = require( '../config.json' )
 
+require("babel-polyfill")
+
 const $ = require( 'jquery' )
 const riot = require( 'riot' )
 const L = require( 'leaflet' )
@@ -8,11 +10,13 @@ const map = require( '../tags/map.tag' )
 
 if ( location.hash ) {
   const hash = location.hash.replace( /^#/, '' )
-  const pos = hash.split( ',' )
-  if ( 3 === pos.length ) {
-    config.zoom = pos[0]
-    config.lat = pos[1]
-    config.lng = pos[2]
+  const [ zoom, lat, lng ] = hash.split( ',' )
+  if ( zoom ) {
+    config.zoom = zoom
+  }
+  if ( lat && lng ) {
+    config.lat = lat
+    config.lng = lng
   }
 }
 

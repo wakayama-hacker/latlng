@@ -6,7 +6,7 @@
 
     const map = L.map( div )
 
-    const show_map = function() {
+    const show_map = () => {
       div.style.height = '100%'
 
       if ( ! opts.zoom ) {
@@ -38,7 +38,7 @@
               .openPopup();
       } )
 
-      map.on( 'moveend', function( e ) {
+      map.on( 'moveend', ( e ) => {
         const zoom = e.target._zoom
         const center = map.getCenter()
         const lat = center.lat
@@ -47,11 +47,11 @@
       } )
     }
 
-    window.addEventListener( 'resize', function() {
+    window.addEventListener( 'resize', () => {
       if ( global.resizeTimer !== false ) {
         clearTimeout( global.resizeTimer )
       }
-      global.resizeTimer = setTimeout( function() {
+      global.resizeTimer = setTimeout( () => {
         show_map()
       }, Math.floor( 1000 / 60 * 10 ) )
     } )
