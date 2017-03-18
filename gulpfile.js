@@ -7,6 +7,7 @@ const riotify     = require( 'riotify' )
 const uglify      = require( 'gulp-uglify' )
 const source      = require( 'vinyl-source-stream' )
 const sass        = require( 'gulp-sass' )
+const babel       = require('gulp-babel');
 
 gulp.task( 'css', () => {
   gulp.src( [
@@ -30,6 +31,9 @@ gulp.task( 'js', function ( cb ) {
   .bundle()
   .pipe( source( 'app.min.js' ) )
   .pipe( buffer() )
+  .pipe( babel( {
+      presets: ['es2015']
+  } ) )
   .pipe( uglify() )
   .pipe( gulp.dest( 'js' ) )
   .on( 'end', cb )

@@ -16,9 +16,9 @@ if ( location.hash ) {
   }
 }
 
-$( '#map' ).on( 'click', '.latlng', function( e ) {
+$( '#map' ).on( 'click', '.latlng', ( e ) => {
   const r = document.createRange();
-  r.selectNodeContents( this );
+  r.selectNodeContents( e.target );
   window.getSelection().addRange( r );
 } )
 
