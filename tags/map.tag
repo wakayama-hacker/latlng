@@ -29,7 +29,9 @@
         }
       }
 
-      L.control.layers( basemaps, {}, { position: 'bottomleft' } ).addTo( map )
+      if ( layers.length > 1 ) {
+        L.control.layers( basemaps, {}, { position: 'bottomleft' } ).addTo( map )
+      }
 
       const marker = L.marker()
       map.on( 'click', function( e ) {
