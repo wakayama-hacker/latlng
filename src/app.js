@@ -8,22 +8,18 @@ const L = require( 'leaflet' )
 
 const map = require( '../tags/map.tag' )
 
-if ( location.hash ) {
-  const hash = location.hash.replace( /^#/, '' )
-  const [ zoom, lat, lng ] = hash.split( ',' )
-  if ( zoom ) {
-    config.zoom = zoom
-  }
-  if ( lat && lng ) {
-    config.lat = lat
-    config.lng = lng
-  }
+const latlng = localStorage.getItem( 'location' )
+if ( latlng ) {
+  [ config.zoom, config.lat, config.lng ] = latlng.split( ',' )
+  location.hash = config.zoom + ',' + config.lat + ',' + config.lng
+} else if ( location.hash ) {
+  [ config.zoom, config.lat, config.lng ] = location.hash.replace( /^#/, '' ).split( ',' )
 }
 
 $( '#map' ).on( 'click', '.latlng', ( e ) => {
-  const r = document.createRange();
-  r.selectNodeContents( e.target );
-  window.getSelection().addRange( r );
+  const r = document.createRange()
+  r.selectNodeContents( e.target )
+  window.getSelection().addRange( r )
 } )
 
 riot.mount( map, {
@@ -31,4 +27,9 @@ riot.mount( map, {
   lng: config.lng,
   zoom: config.zoom,
   "layers": config.layers
+} )
+
+$( window ).on( 'hashchange', () => {
+  const latlng = location.hash.replace( /^#/, '' )
+  window.localStorage.setItem( 'location', latlng )
 } )
