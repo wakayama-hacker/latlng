@@ -9,11 +9,11 @@ const L = require( 'leaflet' )
 const map = require( '../tags/map.tag' )
 
 const latlng = localStorage.getItem( 'location' )
-if ( latlng ) {
+if ( location.hash ) {
+  [ config.zoom, config.lat, config.lng ] = location.hash.replace( /^#/, '' ).split( ',' )
+} else if ( latlng ) {
   [ config.zoom, config.lat, config.lng ] = latlng.split( ',' )
   location.hash = config.zoom + ',' + config.lat + ',' + config.lng
-} else if ( location.hash ) {
-  [ config.zoom, config.lat, config.lng ] = location.hash.replace( /^#/, '' ).split( ',' )
 }
 
 $( '#map' ).on( 'click', '.latlng', ( e ) => {
