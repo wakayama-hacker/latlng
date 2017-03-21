@@ -66,7 +66,7 @@
       $( '.copy' ).tooltip( {
         trigger: 'click',
         placement: 'bottom',
-        title: "Copied"
+        title: "Copied!"
       } )
 
       $( '.copy' ).on( 'show.bs.tooltip', ( e ) => {

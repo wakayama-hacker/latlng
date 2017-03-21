@@ -18,6 +18,7 @@ table
   margin: 20px 10px;
   border-collapse: collapse;
   border: 1px solid #cccccc;
+  color: #555555;
   td
   {
     vertical-align: middle !important;
@@ -26,8 +27,12 @@ table
   tr td:first-child,
   tr td:last-child
   {
-    background-color: #eeeeee;
+    background-color: #f5f5f5;
     font-weight: bolder;
+  }
+  tr td:last-child
+  {
+    padding: 0;
   }
   tr td
   {
@@ -35,8 +40,18 @@ table
   }
   .copy
   {
+    cursor: pointer;
+    overflow: hidden;
+    width: 100%;
+    display: block;
+    height: 40px;
+    line-height: 40px;
     border: none;
     background-color: transparent;
-
+    font-size: 16px;
+  }
+  .copy:hover
+  {
+    color: #000000;
   }
 }
