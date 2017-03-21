@@ -10,6 +10,18 @@
       opts.zoom = 14
     }
 
+    if ( isNaN( parseInt( opts.zoom ) ) ) {
+      opts.zoom = 0
+    }
+
+    if ( isNaN( parseFloat( opts.lat ) ) ) {
+      opts.lat = 0
+    }
+
+    if ( isNaN( parseFloat( opts.lng ) ) ) {
+      opts.lng = 0
+    }
+
     const map = L.map( div ).setView( new L.LatLng( opts.lat, opts.lng ), opts.zoom )
 
     const layers = opts.layers
@@ -32,10 +44,21 @@
 
     const marker = L.marker()
     map.on( 'click', ( e ) => {
+      let lat = e.latlng.lat
+      let lng = e.latlng.lng
+      if ( lng > 180 ) {
+        while( lng > 180 ) {
+          lng = lng - 360
+        }
+      } else if ( lng < -180 ) {
+        while( lng < -180 ) {
+          lng = lng + 360
+        }
+      }
       marker.setLatLng( [ e.latlng.lat, e.latlng.lng ] ).addTo( map )
         .bindPopup( '<table class="latlng">'
-          + `<tr><td>Lat</td><td>${e.latlng.lng}</td><td><button class="copy" data-clipboard-text="${e.latlng.lat}"><i class="glyphicon glyphicon-copy"></i></button></td></tr>`
-          + `<tr><td>Lng</td><td>${e.latlng.lng}</td><td><button class="copy" data-clipboard-text="${e.latlng.lng}"><i class="glyphicon glyphicon-copy"></i></button></td></tr></table>` )
+          + `<tr><td>Latitude</td><td>${lat}</td><td><button class="copy" data-clipboard-text="${lat}"><i class="glyphicon glyphicon-copy"></i></button></td></tr>`
+          + `<tr><td>Longitude</td><td>${lng}</td><td><button class="copy" data-clipboard-text="${lng}"><i class="glyphicon glyphicon-copy"></i></button></td></tr></table>` )
         .openPopup()
 
       const clipboard = new Clipboard( '.copy' )
@@ -54,10 +77,19 @@
     } )
 
     map.on( 'moveend', ( e ) => {
-      const zoom = e.target._zoom
+      let zoom = e.target._zoom
       const center = map.getCenter()
-      const lat = center.lat
-      const lng = center.lng
+      let lat = center.lat
+      let lng = center.lng
+      if ( lng > 180 ) {
+        while( lng > 180 ) {
+          lng = lng - 360
+        }
+      } else if ( lng < -180 ) {
+        while( lng < -180 ) {
+          lng = lng + 360
+        }
+      }
       location.hash = zoom + ',' + lat + ',' + lng
     } )
   </script>
