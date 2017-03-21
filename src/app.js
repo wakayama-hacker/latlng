@@ -8,7 +8,6 @@ const riot = require( 'riot' )
 const L = require( 'leaflet' )
 const bootstrap = require( 'bootstrap' )
 
-
 const map = require( '../tags/map.tag' )
 
 const latlng = localStorage.getItem( 'location' )
