@@ -7,7 +7,7 @@ const riotify     = require( 'riotify' )
 const uglify      = require( 'gulp-uglify' )
 const source      = require( 'vinyl-source-stream' )
 const sass        = require( 'gulp-sass' )
-const babel       = require('gulp-babel');
+const babel       = require( 'gulp-babel' );
 
 gulp.task( 'css', () => {
   gulp.src( [
