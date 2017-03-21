@@ -15,14 +15,16 @@ body
 
 table
 {
-  margin: 20px 10px;
+  margin: 20px 0;
   border-collapse: collapse;
   border: 1px solid #cccccc;
   color: #555555;
+  box-shadow: 0 0 2px 0px rgba( 0, 0, 0, 0.1 );
   td
   {
     vertical-align: middle !important;
     padding: 8px;
+    background-color: #ffffff;
   }
   tr td:first-child,
   tr td:last-child
