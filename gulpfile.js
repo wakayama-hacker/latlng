@@ -12,6 +12,8 @@ const babel       = require('gulp-babel');
 gulp.task( 'css', () => {
   gulp.src( [
     'node_modules/leaflet/dist/leaflet.css',
+    'node_modules/bootstrap/dist/css/bootstrap.min.css',
+    'node_modules/bootstrap/dist/css/bootstrap.min.css.map',
   ] )
 		.pipe( gulp.dest( 'css' ) )
 } )
@@ -39,6 +41,13 @@ gulp.task( 'js', function ( cb ) {
   .on( 'end', cb )
 } )
 
+gulp.task( 'fonts', () => {
+  gulp.src( [
+    'node_modules/bootstrap/dist/fonts/glyphicons-halflings-regular.*'
+  ] )
+		.pipe( gulp.dest( 'fonts' ) )
+} )
+
 gulp.task( 'sass', () => {
   return gulp.src( './src/style.scss' )
     .pipe( sass().on( 'error', sass.logError ) )
@@ -48,6 +57,7 @@ gulp.task( 'sass', () => {
 gulp.task( 'default', [
   'js',
   'css',
+  'fonts',
   'css-images',
   'sass',
 ] )

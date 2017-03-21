@@ -20,6 +20,8 @@
   "homepage": "https://github.com/miya0001/latlng#readme",
   "dependencies": {
     "babel-polyfill": "^6.23.0",
+    "bootstrap": "^3.3.7",
+    "clipboard": "^1.6.1",
     "jquery": "^3.1.1",
     "leaflet": "^1.0.3",
     "riot": "^3.3.2"

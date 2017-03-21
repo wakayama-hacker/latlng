@@ -2,9 +2,12 @@ const config = require( '../config.json' )
 
 require("babel-polyfill")
 
-const $ = require( 'jquery' )
+global.$ = global.jQuery = require('jquery');
+
 const riot = require( 'riot' )
 const L = require( 'leaflet' )
+const bootstrap = require( 'bootstrap' )
+
 
 const map = require( '../tags/map.tag' )
 
@@ -16,17 +19,11 @@ if ( location.hash ) {
   location.hash = config.zoom + ',' + config.lat + ',' + config.lng
 }
 
-$( '#map' ).on( 'click', '.latlng', ( e ) => {
-  const r = document.createRange()
-  r.selectNodeContents( e.target )
-  window.getSelection().addRange( r )
-} )
-
 riot.mount( map, {
   lat: config.lat,
   lng: config.lng,
   zoom: config.zoom,
-  "layers": config.layers
+  layers: config.layers
 } )
 
 $( window ).on( 'hashchange', () => {

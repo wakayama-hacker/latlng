@@ -1,5 +1,6 @@
 <map class="map" style="width: 100%; height: 100%;">
   <script type="es6">
+    const Clipboard = require( 'clipboard' )
     const div = document.createElement( 'div' )
     this.root.appendChild( div )
     div.style.width = '100%'
@@ -32,9 +33,24 @@
     const marker = L.marker()
     map.on( 'click', ( e ) => {
       marker.setLatLng( [ e.latlng.lat, e.latlng.lng ] ).addTo( map )
-        .bindPopup( '<span class="latlng">' + e.latlng.lat + '</span>, <span class="latlng">'
-            + e.latlng.lng + '</span>' )
+        .bindPopup( '<table class="latlng">'
+          + `<tr><td>Lat</td><td>${e.latlng.lng}</td><td><button class="copy" data-clipboard-text="${e.latlng.lat}"><i class="glyphicon glyphicon-copy"></i></button></td></tr>`
+          + `<tr><td>Lng</td><td>${e.latlng.lng}</td><td><button class="copy" data-clipboard-text="${e.latlng.lng}"><i class="glyphicon glyphicon-copy"></i></button></td></tr></table>` )
         .openPopup()
+
+      const clipboard = new Clipboard( '.copy' )
+
+      $( '.copy' ).tooltip( {
+        trigger: 'click',
+        placement: 'bottom',
+        title: "Copied"
+      } )
+
+      $( '.copy' ).on( 'show.bs.tooltip', ( e ) => {
+        setTimeout( () => {
+          $( e.target ).tooltip( 'hide' )
+        }, 1000 )
+      } )
     } )
 
     map.on( 'moveend', ( e ) => {
