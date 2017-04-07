@@ -5,7 +5,7 @@
   "layers": [
     {
       "name": "Open Street Map",
-      "tile": "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+      "tile": "https://miya0001.github.io/tile-server/tiles/{z}/{x}/{y}.png",
       "attribution": "OpenStreetMap Contributers",
       "attribution_url": "http://osm.org/copyright"
     },
